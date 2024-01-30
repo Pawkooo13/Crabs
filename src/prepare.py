@@ -1,5 +1,7 @@
 import config as cfg
 import pandas as pd
+from sklearn.model_selection import train_test_split
+import os
 
 class DataProcessor:
     @staticmethod
@@ -46,7 +48,11 @@ def main():
     
     DP = DataProcessor()
     processed_data = DP.process(data)
-    print(processed_data.head())
+
+    train, valid = train_test_split(processed_data, test_size=0.3, random_state=42)
+
+    train.to_csv(os.path.join(cfg.DATA_DIR, 'processed_train.csv'), index=False)
+    valid.to_csv(os.path.join(cfg.DATA_DIR, 'processed_valid.csv'), index=False)
 
 if __name__ == '__main__':
     main()
