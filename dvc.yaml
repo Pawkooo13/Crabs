@@ -1,0 +1,10 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+      - data/train.csv
+      - src/config.py
+      - src/prepare.py
+    outs:
+      - data/processed_train.csv
+      - data/processed_valid.csv
