@@ -3,3 +3,5 @@ numpy==1.26.3
 seaborn==0.13.2
 matplotlib==3.8.2
 dvc==3.42.0
+scikit-learn==1.4.0
+tensorflow==2.15.0
