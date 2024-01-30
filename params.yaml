@@ -1,0 +1,12 @@
+test_size: 0.3
+
+model:
+  kind: "FC"
+  n_layers: 1
+  units: 8
+  activation: "relu"
+
+train:
+  loss: "MAE"
+  lr: 0.001
+  epochs: 20
