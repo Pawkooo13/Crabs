@@ -2,6 +2,7 @@ import config as cfg
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import os
+from dvc.api import params_show
 
 class DataProcessor:
     @staticmethod
@@ -45,11 +46,14 @@ class DataProcessor:
 
 def main():
     data = pd.read_csv(cfg.DATA_PATH, delimiter=',')
-    
+    params = params_show()
+
+    test_size = params['test_size']
+
     DP = DataProcessor()
     processed_data = DP.process(data)
 
-    train, valid = train_test_split(processed_data, test_size=0.3, random_state=42)
+    train, valid = train_test_split(processed_data, test_size=test_size, random_state=42)
 
     train.to_csv(os.path.join(cfg.DATA_DIR, 'processed_train.csv'), index=False)
     valid.to_csv(os.path.join(cfg.DATA_DIR, 'processed_valid.csv'), index=False)
