@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 import math
 from keras.models import Sequential
 from keras.layers import Dense, Input
-from dvc.api import params_show
 
 class ANN(ABC):
     """Defines methods to create model"""
@@ -40,7 +39,7 @@ class PyramidalANN(ANN):
         while(units != 1):
             for _ in range(n_layers):
                 self.model.add(Dense(units=units,
-                                    activation=activation))
+                                     activation=activation))
 
             units = math.floor(math.sqrt(units))
 
@@ -71,26 +70,3 @@ def create_model_initializator(kind='FC'):
     models = {'FC': FullyConnectedANN(),
               'P': PyramidalANN()}
     return models[kind]
-
-def main():
-    params = params_show()
-
-    kind = params['model']['kind']
-    n_layers = params['model']['n_layers']
-    units = params['model']['units']
-    activation = params['model']['activation']
-
-    loss = params['train']['loss']
-    lr = params['train']['lr']
-    epochs = params['train']['epochs']
-
-
-    model_init = create_model_initializator(kind)
-    model = model_init.build(n_layers=n_layers,
-                             units=units,
-                             activation=activation)
-    
-    print(model.summary())
-
-if __name__ == '__main__':
-    main()

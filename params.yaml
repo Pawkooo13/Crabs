@@ -1,12 +1,13 @@
-test_size: 0.3
+test_size: 0.2
 
 model:
-  kind: "FC"
-  n_layers: 1
-  units: 8
-  activation: "relu"
+  kind: "P"
+  n_layers: 2
+  units: 64
+  activation: "tanh"
 
 train:
-  loss: "MAE"
+  loss: "mae"
   lr: 0.001
-  epochs: 20
+  epochs: 50
+  batch_size: 128
