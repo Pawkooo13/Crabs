@@ -9,18 +9,50 @@ stages:
       size: 4179435
     - path: src/config.py
       hash: md5
-      md5: 05a28b2a06312b63f61a613b8c1c512f
-      size: 108
+      md5: b399a41795512448916db0c4519058d9
+      size: 160
     - path: src/prepare.py
       hash: md5
-      md5: 6b80dd6f3feeb88752a8631eb1982c40
-      size: 2327
+      md5: 5076ea85f3d084eae1dc26262f6d83df
+      size: 2429
     outs:
     - path: data/processed_train.csv
       hash: md5
-      md5: 44beb136f4e90eeccf4acfb11ed69f63
-      size: 4797042
+      md5: bd5a5ee53f47fe965a0a14fe56694d4a
+      size: 5482051
     - path: data/processed_valid.csv
       hash: md5
-      md5: 7a1cf4841854f827b11b4432e8b31758
-      size: 2056032
+      md5: 3081b2107ac8403ed292da0a40e94045
+      size: 1371023
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed_train.csv
+      hash: md5
+      md5: bd5a5ee53f47fe965a0a14fe56694d4a
+      size: 5482051
+    - path: data/processed_valid.csv
+      hash: md5
+      md5: 3081b2107ac8403ed292da0a40e94045
+      size: 1371023
+    - path: src/config.py
+      hash: md5
+      md5: b399a41795512448916db0c4519058d9
+      size: 160
+    - path: src/factory.py
+      hash: md5
+      md5: 69d584667484d398065bad8a9272a937
+      size: 2340
+    - path: src/train.py
+      hash: md5
+      md5: 4eb870aebcb25f8147bfd3637c4426de
+      size: 1744
+    outs:
+    - path: models/ANN.keras
+      hash: md5
+      md5: df9ffcfab4c72b744ae72de3f68048d9
+      size: 106607
+    - path: models/history.csv
+      hash: md5
+      md5: 72ad974a97f9713049302dfc0cd32c65
+      size: 2068

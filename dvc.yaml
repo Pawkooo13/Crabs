@@ -8,3 +8,14 @@ stages:
     outs:
       - data/processed_train.csv
       - data/processed_valid.csv
+  train:
+    cmd: python src/train.py
+    deps:
+      - data/processed_train.csv
+      - data/processed_valid.csv
+      - src/config.py
+      - src/factory.py
+      - src/train.py
+    outs:
+      - models/ANN.keras
+      - models/history.csv
