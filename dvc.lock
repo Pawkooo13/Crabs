@@ -45,14 +45,14 @@ stages:
       size: 2340
     - path: src/train.py
       hash: md5
-      md5: 4eb870aebcb25f8147bfd3637c4426de
-      size: 1744
+      md5: e83071b41c9bc00e077525a4fddc4669
+      size: 1759
     outs:
     - path: models/ANN.keras
       hash: md5
-      md5: df9ffcfab4c72b744ae72de3f68048d9
+      md5: 4181d7625e265486744cf4f4f16c983b
       size: 106607
     - path: models/history.csv
       hash: md5
-      md5: 72ad974a97f9713049302dfc0cd32c65
-      size: 2068
+      md5: 48717282de813ed3b76a42064c834acb
+      size: 1918

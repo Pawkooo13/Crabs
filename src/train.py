@@ -34,8 +34,6 @@ def main():
     model = model_init.build(n_layers=n_layers,
                              units=units,
                              activation=activation)
-    
-    print(model.summary())
 
     model.compile(loss=loss,
                   optimizer=Adam(learning_rate=lr))
@@ -44,10 +42,11 @@ def main():
                         y=Y_train,
                         validation_data=(X_valid, Y_valid),
                         epochs=epochs,
-                        batch_size=batch_size)
+                        batch_size=batch_size,
+                        verbose=2)
 
     model.save(os.path.join(cfg.MODELS_DIR, 'ANN.keras'))
-    pd.DataFrame(history.history).to_csv(os.path.join(cfg.MODELS_DIR, 'history.csv'))
+    pd.DataFrame(history.history).to_csv(os.path.join(cfg.MODELS_DIR, 'history.csv'), index=False)
 
 if __name__ == '__main__':
     main()
