@@ -9,36 +9,36 @@ stages:
       size: 4179435
     - path: src/config.py
       hash: md5
-      md5: b399a41795512448916db0c4519058d9
-      size: 160
+      md5: 5851854063fe53def88d0a351e4f1917
+      size: 318
     - path: src/prepare.py
       hash: md5
-      md5: 5076ea85f3d084eae1dc26262f6d83df
-      size: 2429
+      md5: 384555243cdc00a5b3bf803b4e8b982c
+      size: 2531
     outs:
     - path: data/processed_train.csv
       hash: md5
-      md5: bd5a5ee53f47fe965a0a14fe56694d4a
-      size: 5482051
+      md5: 5d36d74c4cf3e83f6e876192ed98a237
+      size: 5274111
     - path: data/processed_valid.csv
       hash: md5
-      md5: 3081b2107ac8403ed292da0a40e94045
-      size: 1371023
+      md5: 2350782f26686fd68d44f174359cf53f
+      size: 1319038
   train:
     cmd: python src/train.py
     deps:
     - path: data/processed_train.csv
       hash: md5
-      md5: bd5a5ee53f47fe965a0a14fe56694d4a
-      size: 5482051
+      md5: 5d36d74c4cf3e83f6e876192ed98a237
+      size: 5274111
     - path: data/processed_valid.csv
       hash: md5
-      md5: 3081b2107ac8403ed292da0a40e94045
-      size: 1371023
+      md5: 2350782f26686fd68d44f174359cf53f
+      size: 1319038
     - path: src/config.py
       hash: md5
-      md5: b399a41795512448916db0c4519058d9
-      size: 160
+      md5: 5851854063fe53def88d0a351e4f1917
+      size: 318
     - path: src/factory.py
       hash: md5
       md5: 69d584667484d398065bad8a9272a937
@@ -50,9 +50,33 @@ stages:
     outs:
     - path: models/ANN.keras
       hash: md5
-      md5: 4181d7625e265486744cf4f4f16c983b
+      md5: 0aa02745a9190611492c71ce60202982
       size: 106607
     - path: models/history.csv
       hash: md5
-      md5: 48717282de813ed3b76a42064c834acb
-      size: 1918
+      md5: 101c2d6e75e05f939a3cec8b7f5c510d
+      size: 1927
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/test.csv
+      hash: md5
+      md5: 9872a43e302c39631f8d8db72bff3d7c
+      size: 1044001
+    - path: models/ANN.keras
+      hash: md5
+      md5: 0aa02745a9190611492c71ce60202982
+      size: 106607
+    - path: src/evaluate.py
+      hash: md5
+      md5: abbc744f69d6750993ba9c8449f51298
+      size: 1285
+    - path: src/prepare.py
+      hash: md5
+      md5: 384555243cdc00a5b3bf803b4e8b982c
+      size: 2531
+    outs:
+    - path: models/metrics.json
+      hash: md5
+      md5: 9d6c362aafe2bbba764f6bf4bb33fe7e
+      size: 108

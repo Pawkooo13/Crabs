@@ -19,3 +19,12 @@ stages:
     outs:
       - models/ANN.keras
       - models/history.csv
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - data/test.csv
+      - models/ANN.keras
+      - src/prepare.py
+      - src/evaluate.py
+    outs:
+      - models/metrics.json
