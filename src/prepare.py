@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import os
 from dvc.api import params_show
+import numpy as np
 
 class DataProcessor:
     @staticmethod
@@ -43,7 +44,7 @@ class DataProcessor:
         if train:
           processed_df = processed_df.pipe(DataProcessor.remove_outliers)
 
-        processed_df = pd.get_dummies(processed_df)
+        processed_df = pd.get_dummies(processed_df, dtype=np.float32) #to avoid boolean
         return processed_df
 
 def main():

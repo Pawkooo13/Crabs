@@ -23,7 +23,10 @@ def eval_scores(y_true, y_pred):
     mae = mean_absolute_error(y_true, y_pred)
     r2 = r2_score(y_true, y_pred)
 
-    metrics = {'MSE': mse, 'RMSE': rmse, 'MAE': mae, 'R2': r2}
+    metrics = {'MSE': mse,
+               'RMSE': rmse, 
+               'MAE': mae, 
+               'R2': r2}
 
     with open(cfg.METRICS_PATH, 'w') as outfile:
         json.dump(metrics, outfile)
@@ -32,19 +35,21 @@ def eval_scores(y_true, y_pred):
 if __name__ == '__main__':
 
     # load test data from file
-    print(cfg.TEST_PATH)
-    df_data = pd.read_csv(cfg.TEST_PATH, delimiter=',')
+    df_data = pd.read_csv(cfg.TEST_PATH)
 
     model = tensorflow.keras.saving.load_model(cfg.MODELS_PATH)
-    text = '''This log file contains the evaluation results of the prediction model for the age of the crab.
-    '''
-    print(text)
-    print('The total numer of testing records: {}\n'.format(len(df_data)))
 
     DP = DataProcessor()
-    test = DP.process(df=df_data, train=False)
+    test = DP.process(df=df_data, 
+                      train=False)
+
+    print(test.head())
+
     Y_test = test['Age']
-    X_test = test.drop(columns=['Age'], axis=1)
+    X_test = test.drop(columns=['Age'], 
+                       axis=1)
+
+
     Y_pred = model.predict(X_test)
+
     eval_scores(y_true=Y_test, y_pred=Y_pred)
-    print(X_test.head())
