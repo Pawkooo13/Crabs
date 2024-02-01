@@ -3,8 +3,7 @@ import numpy as np
 import os
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import config as cfg
-import tensorflow as tf
-from tensorflow.keras.saving import load_model
+import tensorflow
 from prepare import DataProcessor
 import json
 
@@ -33,9 +32,10 @@ def eval_scores(y_true, y_pred):
 if __name__ == '__main__':
 
     # load test data from file
-    df_data = pd.read_csv(cfg.TEST_PATH, delimiter=';')
+    print(cfg.TEST_PATH)
+    df_data = pd.read_csv(cfg.TEST_PATH, delimiter=',')
 
-    model = load_model(cfg.MODELS_PATH)
+    model = tensorflow.keras.saving.load_model(cfg.MODELS_PATH)
     text = '''This log file contains the evaluation results of the prediction model for the age of the crab.
     '''
     print(text)
@@ -47,4 +47,4 @@ if __name__ == '__main__':
     X_test = test.drop(columns=['Age'], axis=1)
     Y_pred = model.predict(X_test)
     eval_scores(y_true=Y_test, y_pred=Y_pred)
-
+    print(X_test.head())
