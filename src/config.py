@@ -1,9 +1,10 @@
 import os
 
-DATA_DIR = os.path.join(os.getcwd(), 'data')
-DATA_PATH = os.path.join(DATA_DIR, 'train.csv')
+DATA_DIR = 'data/' #os.path.join(os.getcwd(), 'data')
+DATA_PATH = 'data/train.csv' #os.path.join(DATA_DIR, 'train.csv')
+TEST_PATH = 'data/test.csv' #os.path.join(DATA_DIR, 'test.csv')
 
-MODELS_DIR = os.path.join(os.getcwd(), 'models')
-MODELS_PATH = os.path.join(MODELS_DIR, 'ANN.keras')
-TEST_PATH = os.path.join(DATA_DIR, 'test.csv')
-METRICS_PATH = os.path.join(MODELS_DIR, 'metrics.json')
+MODELS_DIR = 'models/' #os.path.join(os.getcwd(), 'models')
+MODELS_PATH =  'models/ANN.keras' #os.path.join(MODELS_DIR, 'ANN.keras')
+
+METRICS_PATH = 'models/metrics.json' #os.path.join(MODELS_DIR, 'metrics.json')

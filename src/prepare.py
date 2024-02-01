@@ -1,9 +1,9 @@
 import config as cfg
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import os
 from dvc.api import params_show
 import numpy as np
+import os
 
 class DataProcessor:
     @staticmethod
@@ -50,7 +50,8 @@ class DataProcessor:
 def main():
     data = pd.read_csv(cfg.DATA_PATH, delimiter=',')
     params = params_show()
-
+    print(data.head())
+    
     test_size = params['test_size']
 
     DP = DataProcessor()
@@ -60,6 +61,7 @@ def main():
 
     train.to_csv(os.path.join(cfg.DATA_DIR, 'processed_train.csv'), index=False)
     valid.to_csv(os.path.join(cfg.DATA_DIR, 'processed_valid.csv'), index=False)
+    
 
 if __name__ == '__main__':
     main()
