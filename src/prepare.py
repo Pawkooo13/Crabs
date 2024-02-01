@@ -35,12 +35,14 @@ class DataProcessor:
         df['Viscera Weight'] = df['Viscera Weight']/df['Weight']
         return df
 
-    def process(self, df):
+    def process(self, df, train=True):
         '''run data pipeline and return processed dataframe with one hot encoded Sex column'''
         processed_df = (df.pipe(DataProcessor.change_units)
-                        .pipe(DataProcessor.remove_outliers)
                         .pipe(DataProcessor.check_sum_of_weights)
                         .pipe(DataProcessor.change_weight_features_to_ratio))
+        if train:
+          processed_df = processed_df.pipe(DataProcessor.remove_outliers)
+
         processed_df = pd.get_dummies(processed_df)
         return processed_df
 
