@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import os
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import config as cfg
 import tensorflow
@@ -35,15 +34,13 @@ def eval_scores(y_true, y_pred):
 if __name__ == '__main__':
 
     # load test data from file
-    df_data = pd.read_csv(cfg.TEST_PATH)
+    df = pd.read_csv(cfg.TEST_PATH)
 
     model = tensorflow.keras.saving.load_model(cfg.MODELS_PATH)
 
     DP = DataProcessor()
-    test = DP.process(df=df_data, 
+    test = DP.process(df=df, 
                       train=False)
-
-    print(test.head())
 
     Y_test = test['Age']
     X_test = test.drop(columns=['Age'], 
@@ -52,4 +49,5 @@ if __name__ == '__main__':
 
     Y_pred = model.predict(X_test)
 
-    eval_scores(y_true=Y_test, y_pred=Y_pred)
+    eval_scores(y_true=Y_test, 
+                y_pred=Y_pred)
