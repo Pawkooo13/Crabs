@@ -1,6 +1,6 @@
 # Crab Age Prediction
 
-Głównym celem projektu jest oszacowanie wieku kraba na podstawie jego cech fizycznych.
+The main object of this project is estimating the age of a crab based on it's phisical attributes.
 
 ## About the dataset
 
@@ -22,4 +22,20 @@ After cloning the repository set up virtual environment and install requirements
 python -m venv venv 
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
+## Running the project
+
+In this project we use DVC (Data Version Control) for running the data processing pipeline.
+First, pull data from dvc using dvc-ssh method.
+
+Then, run the 'prepare' stage to preparade raw data
+
+```
+dvc repro prepare
+```
+
+Run the 'evaluate' stage to evalute models
+```
+dvc repro evaluate
 ```
