@@ -8,3 +8,7 @@ MODELS_DIR = 'models/' #os.path.join(os.getcwd(), 'models')
 MODELS_PATH =  'models/ANN.keras' #os.path.join(MODELS_DIR, 'ANN.keras')
 
 METRICS_PATH = 'models/metrics.json' #os.path.join(MODELS_DIR, 'metrics.json')
+
+HISTORY_PATH = 'models/history.csv' #os.path.join(MODELS_DIR, 'history.csv')
+
+PLOT_DIR = 'plot/' #os.path.join(os.getcwd(), 'plot')
