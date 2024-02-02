@@ -28,3 +28,13 @@ stages:
       - src/evaluate.py
     outs:
       - models/metrics.json
+  plot:
+    cmd: python src/plot.py
+    deps:
+      - models/history.csv
+      - src/config.py
+      - src/plot.py
+    outs:
+      - plots/history.jpg
+plots:
+  - plots/history.jpg
